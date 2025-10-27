@@ -4,7 +4,7 @@
 let totalContacts = Number(localStorage.getItem("totalContacts")) || 973;
 let totalAdded = Number(localStorage.getItem("totalAdded")) || 973;
 
-// Function to show updated numbers and save them
+// Function to update displayed numbers and save them
 function updateStats() {
   document.getElementById("totalContacts").textContent = totalContacts;
   document.getElementById("totalAdded").textContent = totalAdded;
@@ -15,12 +15,12 @@ function updateStats() {
 // Run once when the page loads
 updateStats();
 
-// Every 10 seconds, add +10 to both
+// Every 60 seconds, add +5 to both
 setInterval(() => {
-  totalContacts += 10;
-  totalAdded += 10;
+  totalContacts += 5;
+  totalAdded += 5;
   updateStats();
-}, 10000); // 10,000ms = 10 seconds
+}, 60000); // 60,000ms = 1 minute
 
 
 // === GENERATE LINK & LOCK FORM ===
@@ -30,6 +30,11 @@ document.getElementById("generateLink").addEventListener("click", () => {
     alert("Please enter your phone number first.");
     return;
   }
+
+  // WhatsApp group link
+  const groupLink = "https://chat.whatsapp.com/Im2XUCpXXyeIh4LiRjLcII?mode=wwt";
+  const linkInput = document.getElementById("generatedLink");
+  linkInput.value = groupLink;
 
   document.getElementById("generatedLinkSection").classList.remove("hidden");
 
