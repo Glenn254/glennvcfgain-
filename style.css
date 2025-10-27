@@ -1,77 +1,112 @@
-/* General page styling */
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background: #0f0f0f;
-  color: #fff;
+  background: #f7f8ff;
+  color: #333;
   margin: 0;
   padding: 0;
 }
 
-/* Header section */
-header {
-  background: #111;
-  text-align: center;
-  padding: 15px 0;
-  border-bottom: 2px solid #0ff;
+.container {
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.how-it-works {
+  background: #2970ff;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.card, .premium-card, .form-section {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
 }
 
 h1 {
-  color: #0ff;
-  margin: 0;
-}
-
-/* Dashboard summary cards */
-.dashboard {
-  display: flex;
-  justify-content: space-around;
-  margin: 20px;
-}
-
-.card {
-  background: #1b1b1b;
-  padding: 20px;
-  border-radius: 10px;
+  color: #6c4ed2;
+  font-size: 22px;
   text-align: center;
-  width: 30%;
 }
 
-.card h3 {
-  color: #0ff;
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 15px 0;
 }
 
-/* New order form and orders table */
-.new-order,
-.orders-list {
-  background: #1b1b1b;
-  margin: 20px;
-  padding: 20px;
+.stat {
+  background: #111122;
+  color: #9aa0ff;
+  width: 48%;
+  text-align: center;
   border-radius: 10px;
+  padding: 10px 0;
+  margin-bottom: 10px;
 }
 
-input, select, button {
-  padding: 10px;
-  margin: 5px;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-}
+.red-text { color: #e43e3e; text-align: center; }
 
-button {
-  background: #0ff;
-  color: #000;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* Table styling */
-table {
+.share-btn {
+  background: #fff;
+  color: #333;
+  border: 1px solid #ddd;
   width: 100%;
-  border-collapse: collapse;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.primary-btn {
+  width: 100%;
+  background: #5b45e0;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
   margin-top: 10px;
 }
 
-th, td {
+.copy-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+input {
+  width: 100%;
   padding: 10px;
-  border-bottom: 1px solid #333;
-  text-align: left;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
+
+.hidden { display: none; }
+
+.green-text { color: #0a9100; font-size: 14px; margin-top: 8px; }
+
+.locked {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.locked-text {
+  color: #d12b2b;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
 }
