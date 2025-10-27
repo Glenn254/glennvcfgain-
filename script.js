@@ -1,62 +1,52 @@
-// --- Initial values ---
-let totalContacts = 973;
-let totalAdded = 973;
+// === AUTO INCREASE TOTAL CONTACTS & TOTAL ADDED (SAVED IN LOCAL STORAGE) ===
 
-const contactElement = document.getElementById("totalContacts");
-const addedElement = document.getElementById("totalAdded");
+// Load saved values or start from 973
+let totalContacts = parseInt(localStorage.getItem("totalContacts")) || 973;
+let totalAdded = parseInt(localStorage.getItem("totalAdded")) || 973;
 
-// Load saved values if available
-const savedContacts = localStorage.getItem("totalContacts");
-const savedAdded = localStorage.getItem("totalAdded");
-
-if (savedContacts && savedAdded) {
-  totalContacts = parseInt(savedContacts);
-  totalAdded = parseInt(savedAdded);
-}
-
-// Display initial values
-contactElement.textContent = totalContacts;
-addedElement.textContent = totalAdded;
-
-// --- Function to increase numbers every 3 minutes ---
-function increaseStats() {
-  totalContacts += 10;
-  totalAdded += 10;
-  contactElement.textContent = totalContacts;
-  addedElement.textContent = totalAdded;
-
-  // Save updated values so they persist after reload
+function updateStats() {
+  document.getElementById("totalContacts").textContent = totalContacts;
+  document.getElementById("totalAdded").textContent = totalAdded;
   localStorage.setItem("totalContacts", totalContacts);
   localStorage.setItem("totalAdded", totalAdded);
 }
 
-// Run automatically every 3 minutes (180,000 ms)
-setInterval(increaseStats, 3 * 60 * 1000);
+// Increase both by 10 every 3 minutes (180000ms)
+setInterval(() => {
+  totalContacts += 10;
+  totalAdded += 10;
+  updateStats();
+}, 180000);
 
-// --- Generate Link behavior ---
-const generateBtn = document.getElementById("generateLink");
-const generatedSection = document.getElementById("generatedLinkSection");
-const copyBtn = document.getElementById("copyLink");
-const generatedLink = document.getElementById("generatedLink");
-const formSection = document.getElementById("formSection");
+// Run immediately on load
+updateStats();
 
-generateBtn.addEventListener("click", () => {
-  // Show generated link area
-  generatedSection.classList.remove("hidden");
 
-  // Immediately lock the form
+// === GENERATE LINK & LOCK FORM ===
+document.getElementById("generateLink").addEventListener("click", () => {
+  const phone = document.getElementById("phoneNumber").value.trim();
+
+  if (!phone) {
+    alert("Please enter your phone number first.");
+    return;
+  }
+
+  // Show link section
+  document.getElementById("generatedLinkSection").classList.remove("hidden");
+
+  // Lock the form section immediately
+  const formSection = document.getElementById("formSection");
   formSection.classList.add("locked");
-  formSection.querySelector(".locked-text").textContent =
-    "🔒 Uploading your contact and name... Please complete the sharing step.";
 
-  // Smooth scroll to WhatsApp link
-  generatedSection.scrollIntoView({ behavior: "smooth" });
+  // Optional visual confirmation
+  alert("Link generated! Complete the task before adding your contact.");
 });
 
-// --- Copy WhatsApp link button ---
-copyBtn.addEventListener("click", () => {
-  generatedLink.select();
+
+// === COPY LINK ===
+document.getElementById("copyLink").addEventListener("click", () => {
+  const linkInput = document.getElementById("generatedLink");
+  linkInput.select();
   document.execCommand("copy");
-  copyBtn.textContent = "Copied!";
-  setTimeout(() => (copyBtn.textContent = "Copy"), 2000);
+  alert("Link copied successfully!");
 });
