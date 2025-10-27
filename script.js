@@ -1,52 +1,37 @@
-// Get the form and the table body
-const form = document.getElementById("orderForm");
-const ordersTable = document.querySelector("#ordersTable tbody");
+// --- Auto increment every 10 mins ---
+let totalContacts = 968;
+let totalAdded = 968;
+const contactElement = document.getElementById("totalContacts");
+const addedElement = document.getElementById("totalAdded");
 
-// Load any saved orders from localStorage
-let orders = JSON.parse(localStorage.getItem("orders") || "[]");
-
-// Function to display all orders on the page
-function renderOrders() {
-  ordersTable.innerHTML = ""; // clear old data
-  orders.forEach((order) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${order.username}</td>
-      <td>${order.service}</td>
-      <td>${order.quantity}</td>
-      <td>${order.status}</td>
-    `;
-    ordersTable.appendChild(row);
-  });
-
-  // Update summary cards
-  document.getElementById("ordersCount").textContent = orders.length;
-  document.getElementById("completedCount").textContent = orders.filter(o => o.status === "Completed ✅").length;
-  document.getElementById("pendingCount").textContent = orders.filter(o => o.status === "Pending ⏳").length;
+function updateStats() {
+  totalContacts += 5;
+  totalAdded += 5;
+  contactElement.textContent = totalContacts;
+  addedElement.textContent = totalAdded;
 }
 
-// Handle new order submission
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const username = document.getElementById("username").value.trim();
-  const quantity = document.getElementById("quantity").value.trim();
-  const service = document.getElementById("service").value;
-
-  if (!username || !quantity) return alert("Please fill in all fields");
-
-  const newOrder = {
-    username,
-    quantity,
-    service,
-    status: "Pending ⏳"
-  };
-
-  orders.push(newOrder);
-  localStorage.setItem("orders", JSON.stringify(orders)); // save permanently
-  renderOrders();
-  form.reset();
+setInterval(updateStats, 10 * 60 * 1000); // 10 minutes
+window.addEventListener("load", () => {
+  updateStats();
 });
 
-// Display existing orders when page loads
-renderOrders();
+// --- Generate Link Section ---
+const generateBtn = document.getElementById("generateLink");
+const generatedSection = document.getElementById("generatedLinkSection");
+const copyBtn = document.getElementById("copyLink");
+const generatedLink = document.getElementById("generatedLink");
+const formSection = document.getElementById("formSection");
+
+generateBtn.addEventListener("click", () => {
+  generatedSection.classList.remove("hidden");
+  formSection.classList.remove("locked");
+  formSection.querySelector(".locked-text").textContent = "✅ Now you can fill the form.";
+});
+
+copyBtn.addEventListener("click", () => {
+  generatedLink.select();
+  document.execCommand("copy");
+  copyBtn.textContent = "Copied!";
+  setTimeout(() => copyBtn.textContent = "Copy", 2000);
+});
