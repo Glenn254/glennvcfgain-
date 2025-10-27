@@ -3,57 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SMM Panel</title>
+  <title>Glenn VCF</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>💎 Glenn SMM Panel</h1>
-  </header>
+  <div class="container">
+    <button class="how-it-works">How It Works</button>
 
-  <section class="dashboard">
     <div class="card">
-      <h3>Total Orders</h3>
-      <p id="ordersCount">0</p>
-    </div>
-    <div class="card">
-      <h3>Completed</h3>
-      <p id="completedCount">0</p>
-    </div>
-    <div class="card">
-      <h3>Pending</h3>
-      <p id="pendingCount">0</p>
-    </div>
-  </section>
+      <h1>📇 GLENN VCF</h1>
+      <h3 class="red-text">STATUS BOOSTER</h3>
 
-  <section class="new-order">
-    <h2>Place New Order</h2>
-    <form id="orderForm">
-      <input type="text" id="username" placeholder="Username" required />
-      <input type="number" id="quantity" placeholder="Quantity" required />
-      <select id="service">
-        <option value="followers">Followers</option>
-        <option value="likes">Likes</option>
-        <option value="views">Views</option>
-      </select>
-      <button type="submit">Submit</button>
-    </form>
-  </section>
+      <div class="stats">
+        <div class="stat"><h2 id="totalContacts">968</h2><p>Total Contacts</p></div>
+        <div class="stat"><h2 id="totalViews">109</h2><p>Total Views</p></div>
+        <div class="stat"><h2 id="downloads">24</h2><p>Downloads</p></div>
+        <div class="stat"><h2 id="totalAdded">968</h2><p>Total Added</p></div>
+        <div class="stat"><h2 id="lastWeek">700</h2><p>Last Week Added</p></div>
+      </div>
 
-  <section class="orders-list">
-    <h2>Recent Orders</h2>
-    <table id="ordersTable">
-      <thead>
-        <tr>
-          <th>User</th>
-          <th>Service</th>
-          <th>Quantity</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
+      <button id="shareAll" class="share-btn">🔗 Share All</button>
+    </div>
+
+    <div class="premium-card">
+      <h2>👑 Become Premium</h2>
+      <p>Let your number be verified by adding your number below!</p>
+
+      <input type="tel" id="phoneNumber" placeholder="Your phone number" />
+      <button id="generateLink" class="primary-btn">Generate Link</button>
+
+      <div id="generatedLinkSection" class="hidden">
+        <input type="text" id="generatedLink" readonly value="https://whatsapp.com/channel/0029Vb6XAv0GOj9lYT2p3l1X" />
+        <button id="copyLink" class="copy-btn">Copy</button>
+        <p class="green-text">
+          ✅ Share the link to 5 groups or in your status for us to upload your contact and name for verification.
+        </p>
+      </div>
+    </div>
+
+    <div class="form-section locked" id="formSection">
+      <h3>Verification Form</h3>
+      <input type="text" placeholder="Full Name" id="fullName" />
+      <input type="tel" placeholder="Phone Number" id="formPhone" />
+      <input type="email" placeholder="Email (Optional)" id="email" />
+      <button class="primary-btn">Add to VCF</button>
+      <p class="locked-text">🔒 Form locked until you share your link.</p>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
