@@ -1,26 +1,33 @@
-// === AUTO INCREASE TOTAL CONTACTS & TOTAL ADDED ===
+// === AUTO INCREASE TOTAL CONTACTS, TOTAL ADDED & TOTAL VIEWS ===
 
-// Start at 973 or load last saved value
+// Load saved values or set starting defaults
 let totalContacts = Number(localStorage.getItem("totalContacts")) || 973;
 let totalAdded = Number(localStorage.getItem("totalAdded")) || 973;
+let totalViews = Number(localStorage.getItem("totalViews")) || 109;
 
 // Function to update displayed numbers and save them
 function updateStats() {
   document.getElementById("totalContacts").textContent = totalContacts;
   document.getElementById("totalAdded").textContent = totalAdded;
+  document.getElementById("totalViews").textContent = totalViews;
+
+  // Save to local storage so it remembers values
   localStorage.setItem("totalContacts", totalContacts);
   localStorage.setItem("totalAdded", totalAdded);
+  localStorage.setItem("totalViews", totalViews);
 }
 
-// Run once when the page loads
+// Run immediately when the page loads
 updateStats();
 
-// Every 60 seconds, add +5 to both
+// Every 60 seconds, increase stats
 setInterval(() => {
   totalContacts += 5;
   totalAdded += 5;
+  totalViews += 7;
   updateStats();
 }, 60000); // 60,000ms = 1 minute
+
 
 
 // === GENERATE LINK & LOCK FORM ===
@@ -38,7 +45,7 @@ document.getElementById("generateLink").addEventListener("click", () => {
 
   document.getElementById("generatedLinkSection").classList.remove("hidden");
 
-  // Lock the form immediately
+  // Lock the form immediately after generating
   const formSection = document.getElementById("formSection");
   formSection.classList.add("locked");
 
