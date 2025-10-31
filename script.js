@@ -61,7 +61,7 @@ document.getElementById("generateLink").addEventListener("click", () => {
   }
 
   // WhatsApp group link
-  const groupLink = "https://chat.whatsapp.com/Im2XUCpXXyeIh4LiRjLcII?mode=wwt";
+  const groupLink = "https://chat.whatsapp.com/IQeJhBkq2CIG1S8LgZJ2v6?mode=wwt";
   const linkInput = document.getElementById("generatedLink");
   linkInput.value = groupLink;
 
